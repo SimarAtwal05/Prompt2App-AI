@@ -1,6 +1,20 @@
-venv/
-.env
-generated_projects/
+# Generated patches
+generated_patches/
+
+# Reports
+reports/
+
+# Logs
+*.log
+maintenance_output.txt
+
+# Generated diffs
+patches/*.diff
+
+# Python
 __pycache__/
 *.pyc
-*.db
+
+# Virtual env
+venv/
+.env

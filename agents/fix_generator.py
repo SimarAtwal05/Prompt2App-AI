@@ -1,43 +1,21 @@
-import os
-from dotenv import load_dotenv
-from google import genai
-from agents.gemini_client import (
-    generate_with_fallback
-)
+from agents.gemini_client import generate_with_fallback
 
-load_dotenv()
-
-client = genai.Client(
-    api_key=os.getenv("GEMINI_API_KEY")
-)
 
 def fix_generator(state):
+
     print("STEP 7: FIX GENERATOR")
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=f"""
-        Generate a fix.
 
-        Root Cause:
+    prompt = f"""
+    Generate a patch for this root cause.
 
-        {state['root_cause']}
+    Root Cause:
 
-        Return:
-        - Corrected code
-        - Explanation
+    {state["root_cause"]}
+    """
 
-        Keep response concise.
-        """
-    )
+    patch = generate_with_fallback(prompt)
+
     print("STEP 8: FIX GENERATED")
-    patch = response.text
-
-    with open(
-        "patches/fix.diff",
-        "w",
-        encoding="utf-8"
-    ) as f:
-        f.write(patch)
 
     return {
         "patch": patch

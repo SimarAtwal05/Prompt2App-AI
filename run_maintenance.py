@@ -11,9 +11,15 @@ if __name__ == "__main__":
             "root_cause": "",
             "patch": "",
             "approved": False,
+            "signature": "",
             "signature_valid": False,
+            "test_results": "",
+            "report_path": "",
         }
     )
 
-    print("\nMaintenance Workflow Complete")
+    print(
+        "\nMaintenance Workflow Complete"
+    )
+
     print(result)
